@@ -9,7 +9,7 @@ from typing import Callable
 # --------------------- used for basic test to check that CI works correctly------------------
 @pytest.fixture(
     params=[
-        (1, 1, 3),
+        (1, 1, 2),
         (2, 2, 4),
         (3, 4, 7),
         (7, 5, 12),
