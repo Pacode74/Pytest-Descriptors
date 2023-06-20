@@ -1,0 +1,22 @@
+image: python:3.10.8
+
+pipelines:
+  default:
+    - parallel:
+      - step:
+          name: Descriptors-Application-Part-1 tests
+          caches:
+            - pip
+          script:
+            - pip install pipenv --upgrade
+            - pipenv install --system
+            - pytest descriptor_application_part_1 -s -v --durations=0 --cov=.
+      - step:
+          name: Descriptors-Application-Part-2 tests
+          caches:
+            - pip
+          script:
+            - pip install pipenv --upgrade
+            - pipenv install --system
+            - pytest descriptor_application_part_2 -s -v --durations=0 --cov=.
+      
