@@ -1,7 +1,7 @@
 # conftest.py
 import pytest
 from faker import Faker
-
+from descriptor_application_part_2.apps.descriptors import IntegerField, CharField
 from datetime import datetime, timedelta
 from typing import Callable
 
@@ -39,3 +39,22 @@ def time_tracker():
     end = datetime.now()
     diff = end - start
     print(f"\n runtime: {diff.total_seconds()}")
+
+
+@pytest.fixture
+def person():
+    class Person:
+        name = CharField(2, 5)
+        age = IntegerField(0, 100)
+
+    return Person()
+
+
+def faker(n):
+    fake = Faker()
+    return [fake.name()[:5] for _ in range(n)]
+
+
+@pytest.fixture(params=[faker(10)])
+def generate_short_name(request):
+    return request.param
