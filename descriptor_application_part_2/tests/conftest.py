@@ -22,7 +22,6 @@ def demo_fixt(request):
     return request.param
 
 
-
 # ------------------for faker, used in test_simple_with_faker ------
 @pytest.fixture
 def fake():
