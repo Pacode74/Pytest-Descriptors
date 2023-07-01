@@ -5,6 +5,16 @@ from descriptor_application_part_1.apps.descriptors import IntegerField, CharFie
 from datetime import datetime, timedelta
 from typing import Callable
 
+# --------------------create class----------------------------------------
+@pytest.fixture
+def create_test_class():
+    """Create class using `type` metaclass."""
+    def inner(min_, max_):
+        obj_integer_field = type('TestClass', (), {'age': IntegerField(min_, max_)})
+        obj_char_field = type('TestClass', (), {'name': CharField(min_, max_)})
+        return obj_integer_field(), obj_char_field()
+    return inner
+
 
 # --------------------- used for basic test to check that CI works correctly------------------
 @pytest.fixture(
