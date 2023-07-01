@@ -28,11 +28,11 @@ class BaseValidator:
 class IntegerField(BaseValidator):
     def validate(self, value):
         if not isinstance(value, numbers.Integral):
-            raise ValueError(f'{self.prop_name} must be an integer.')
+            raise ValueError(f"{self.prop_name} must be an integer.")
         if self._min is not None and value < self._min:
-            raise ValueError(f'{self.prop_name} must be >= {self._min}.')
+            raise ValueError(f"{self.prop_name} must be >= {self._min}.")
         if self._max is not None and value > self._max:
-            raise ValueError(f'{self.prop_name} must be <= {self._max}')
+            raise ValueError(f"{self.prop_name} must be <= {self._max}")
 
 
 class CharField(BaseValidator):
@@ -42,9 +42,8 @@ class CharField(BaseValidator):
 
     def validate(self, value):
         if not isinstance(value, str):
-            raise ValueError(f'{self.prop_name} must be a string.')
+            raise ValueError(f"{self.prop_name} must be a string.")
         if self._min is not None and len(value) < self._min:
-            raise ValueError(f'{self.prop_name} must be >= {self._min} chars.')
+            raise ValueError(f"{self.prop_name} must be >= {self._min} chars.")
         if self._max is not None and len(value) > self._max:
-            raise ValueError(f'{self.prop_name} must be <= {self._max} chars')
-
+            raise ValueError(f"{self.prop_name} must be <= {self._max} chars")

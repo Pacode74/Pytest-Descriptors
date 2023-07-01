@@ -5,7 +5,7 @@ import unittest
 class TestIntegerField(unittest.TestCase):
     @staticmethod
     def create_test_class(min_, max_):
-        obj = type('TestClass', (), {'age': IntegerField(min_, max_)})
+        obj = type("TestClass", (), {"age": IntegerField(min_, max_)})
         return obj()
 
     def test_set_age_ok(self):
@@ -27,7 +27,7 @@ class TestIntegerField(unittest.TestCase):
         obj = self.create_test_class(min_, max_)
         bad_values = list(range(min_ - 5, min_))
         bad_values += list(range(max_ + 1, max_ + 5))
-        bad_values += [10.5, 1 + 0j, 'abc', (1, 2)]
+        bad_values += [10.5, 1 + 0j, "abc", (1, 2)]
 
         for i, value in enumerate(bad_values):
             with self.subTest(test_number=i):
@@ -77,7 +77,7 @@ class TestIntegerField(unittest.TestCase):
 class TestCharField(unittest.TestCase):
     @staticmethod
     def create_test_class(min_, max_):
-        obj = type('TestClass', (), {'name': CharField(min_, max_)})
+        obj = type("TestClass", (), {"name": CharField(min_, max_)})
         return obj()
 
     def test_set_name_ok(self):
@@ -88,7 +88,7 @@ class TestCharField(unittest.TestCase):
         valid_lengths = range(min_, max_)
 
         for i, length in enumerate(valid_lengths):
-            value = 'a' * length
+            value = "a" * length
             with self.subTest(test_number=i):
                 obj.name = value
                 self.assertEqual(value, obj.name)
@@ -101,7 +101,7 @@ class TestCharField(unittest.TestCase):
         bad_lengths = list(range(min_ - 5, min_))
         bad_lengths += list(range(max_ + 1, max_ + 5))
         for i, length in enumerate(bad_lengths):
-            value = 'a' * length
+            value = "a" * length
             with self.subTest(test_number=i):
                 with self.assertRaises(ValueError):
                     obj.name = value
@@ -119,7 +119,7 @@ class TestCharField(unittest.TestCase):
         obj = self.create_test_class(min_, max_)
         valid_lengths = range(min_, min_ + 100, 10)
         for i, length in enumerate(valid_lengths):
-            value = 'a' * length
+            value = "a" * length
             with self.subTest(test_number=i):
                 obj.name = value
                 self.assertEqual(value, obj.name)
@@ -141,7 +141,7 @@ class TestCharField(unittest.TestCase):
         obj = self.create_test_class(min_, max_)
         valid_lengths = range(max_ - 100, max_, 10)
         for i, length in enumerate(valid_lengths):
-            value = 'a' * length
+            value = "a" * length
             with self.subTest(test_number=i):
                 obj.name = value
                 self.assertEqual(value, obj.name)
@@ -153,8 +153,7 @@ class TestCharField(unittest.TestCase):
         obj = self.create_test_class(min_, max_)
         valid_lengths = range(0, 100, 10)
         for i, length in enumerate(valid_lengths):
-            value = 'a' * length
+            value = "a" * length
             with self.subTest(test_number=i):
                 obj.name = value
                 self.assertEqual(value, obj.name)
-

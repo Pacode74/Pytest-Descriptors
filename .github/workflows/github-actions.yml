@@ -59,7 +59,7 @@ jobs:
           pipenv install --system
       - name: Test with pytest
         run: |
-          pytest teacher_code_part_1 -s -v --durations=0 --cov=.
+          python -m pytest teacher_code_part_1/tests/test_descriptors_part_1.py -s -v --durations=0 --cov=.
   Teacher-Code-Part-2-Test:
     runs-on: ubuntu-latest
 
@@ -76,5 +76,5 @@ jobs:
           pipenv install --system
       - name: Test with pytest
         run: |
-          pytest teacher_code_part_2 -s -v --durations=0 --cov=.
+          python -m pytest teacher_code_part_2/tests/test_descriptors_part_2.py -s -v --durations=0 --cov=.
   

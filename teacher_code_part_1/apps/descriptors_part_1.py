@@ -11,11 +11,11 @@ class IntegerField:
 
     def __set__(self, instance, value):
         if not isinstance(value, numbers.Integral):
-            raise ValueError(f'{self.prop_name} must be an integer.')
+            raise ValueError(f"{self.prop_name} must be an integer.")
         if self._min is not None and value < self._min:
-            raise ValueError(f'{self.prop_name} must be >= {self._min}.')
+            raise ValueError(f"{self.prop_name} must be >= {self._min}.")
         if self._max is not None and value > self._max:
-            raise ValueError(f'{self.prop_name} must be <= {self._max}')
+            raise ValueError(f"{self.prop_name} must be <= {self._max}")
         instance.__dict__[self.prop_name] = value
 
     def __get__(self, instance, owner_class):
@@ -37,11 +37,11 @@ class CharField:
 
     def __set__(self, instance, value):
         if not isinstance(value, str):
-            raise ValueError(f'{self.prop_name} must be a string.')
+            raise ValueError(f"{self.prop_name} must be a string.")
         if self._min is not None and len(value) < self._min:
-            raise ValueError(f'{self.prop_name} must be >= {self._min} chars.')
+            raise ValueError(f"{self.prop_name} must be >= {self._min} chars.")
         if self._max is not None and len(value) > self._max:
-            raise ValueError(f'{self.prop_name} must be <= {self._max} chars')
+            raise ValueError(f"{self.prop_name} must be <= {self._max} chars")
         instance.__dict__[self.prop_name] = value
 
     def __get__(self, instance, owner_class):
@@ -49,5 +49,3 @@ class CharField:
             return self
         else:
             return instance.__dict__.get(self.prop_name, None)
-
-        
