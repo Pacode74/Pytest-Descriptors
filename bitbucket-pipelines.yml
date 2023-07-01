@@ -19,4 +19,20 @@ pipelines:
             - pip install pipenv --upgrade
             - pipenv install --system
             - pytest descriptor_application_part_2 -s -v --durations=0 --cov=.
+      - step:
+          name: Teacher-Code-Part-1 tests
+          caches:
+            - pip
+          script:
+            - pip install pipenv --upgrade
+            - pipenv install --system
+            - pytest teacher_code_part_1 -s -v --durations=0 --cov=.
+      - step:
+          name: Teacher-Code-Part-2 tests
+          caches:
+            - pip
+          script:
+            - pip install pipenv --upgrade
+            - pipenv install --system
+            - pytest teacher_code_part_2 -s -v --durations=0 --cov=.
       

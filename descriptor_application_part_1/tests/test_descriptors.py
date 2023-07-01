@@ -1,9 +1,9 @@
 """
 Tests for Resource class
-Command line: python -m pytest descriptor_application_part_1/tests/test_descriptors.py
+Command line: python -m pytest descriptor_application_part_1/tests/test_descriptors_part_1.py
 
 To run a specific test:
-Command line: python -m pytest descriptor_application_part_1/tests/test_descriptors.py::test_name
+Command line: python -m pytest descriptor_application_part_1/tests/test_descriptors_part_1.py::test_name
 
 To run test under specific pattern:
 Command line: pytest -k "test_validate or test_some_other_test"
@@ -39,6 +39,7 @@ def test_set_age_ok(create_test_class):
         obj.age = value
         assert value == obj.age
 
+
 def test_set_age_invalid(create_test_class):
     """Tests that invalid values raise ValueErrors"""
     min_ = -10
@@ -46,7 +47,7 @@ def test_set_age_invalid(create_test_class):
     obj, _ = create_test_class(min_, max_)
     bad_values = list(range(min_ - 5, min_))
     bad_values += list(range(max_ + 1, max_ + 5))
-    bad_values += [10.5, 1 + 0j, 'abc', (1, 2)]
+    bad_values += [10.5, 1 + 0j, "abc", (1, 2)]
 
     for value in bad_values:
         with pytest.raises(ValueError) as e:
@@ -81,6 +82,7 @@ def test_set_age_max_only(create_test_class):
         obj.age = value
         assert value == obj.age
 
+
 def test_set_age_no_limits(create_test_class):
     """Tests that we can use IntegerField without any limits at all"""
     min_ = None
@@ -91,6 +93,7 @@ def test_set_age_no_limits(create_test_class):
         obj.age = value
         assert value == obj.age
 
+
 # --------------test that come from the course for CharField----------------------
 def test_set_name_ok(create_test_class):
     """Tests that valid values can be assigned/retrieved"""
@@ -100,7 +103,7 @@ def test_set_name_ok(create_test_class):
     valid_lengths = range(min_, max_)
 
     for length in valid_lengths:
-        value = 'a' * length
+        value = "a" * length
         obj.name = value
         assert value == obj.name
 
@@ -113,7 +116,7 @@ def test_set_name_invalid(create_test_class):
     bad_lengths = list(range(min_ - 5, min_))
     bad_lengths += list(range(max_ + 1, max_ + 5))
     for length in bad_lengths:
-        value = 'a' * length
+        value = "a" * length
         with pytest.raises(ValueError) as e:
             obj.name = value
 
@@ -124,6 +127,7 @@ def test_class_get(create_test_class):
     obj_class = type(obj)
     assert isinstance(obj_class.name, CharField)
 
+
 def test_set_name_min_only(create_test_class):
     """Tests that we can specify a min length only"""
     min_ = 0
@@ -131,7 +135,7 @@ def test_set_name_min_only(create_test_class):
     _, obj = create_test_class(min_, max_)
     valid_lengths = range(min_, min_ + 100, 10)
     for length in valid_lengths:
-        value = 'a' * length
+        value = "a" * length
         obj.name = value
         assert value == obj.name
 
@@ -145,6 +149,7 @@ def test_set_name_min_negative(create_test_class):
     assert type(obj).name.min_length == None
     assert type(obj).name.max_length == None
 
+
 def test_set_name_max_only(create_test_class):
     """Tests that we can specify a max length only"""
     min_ = None
@@ -152,7 +157,7 @@ def test_set_name_max_only(create_test_class):
     _, obj = create_test_class(min_, max_)
     valid_lengths = range(max_ - 100, max_, 10)
     for length in valid_lengths:
-        value = 'a' * length
+        value = "a" * length
         obj.name = value
         assert value == obj.name
 
@@ -164,11 +169,13 @@ def test_set_name_no_limits(create_test_class):
     _, obj = create_test_class(min_, max_)
     valid_lengths = range(0, 100, 10)
     for length in valid_lengths:
-        value = 'a' * length
+        value = "a" * length
         obj.name = value
         assert value == obj.name
 
+
 # ------------------- my own test ------------------------
+
 
 def test_name(person, generate_short_name):
     p = person
