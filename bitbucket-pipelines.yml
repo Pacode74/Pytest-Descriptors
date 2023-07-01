@@ -26,7 +26,7 @@ pipelines:
           script:
             - pip install pipenv --upgrade
             - pipenv install --system
-            - pytest teacher_code_part_1 -s -v --durations=0 --cov=.
+            - python -m pytest teacher_code_part_1/tests/test_descriptors_part_1.py -s -v --durations=0 --cov=.
       - step:
           name: Teacher-Code-Part-2 tests
           caches:
@@ -34,5 +34,5 @@ pipelines:
           script:
             - pip install pipenv --upgrade
             - pipenv install --system
-            - pytest teacher_code_part_2 -s -v --durations=0 --cov=.
+            - python -m pytest teacher_code_part_2/tests/test_descriptors_part_2.py -s -v --durations=0 --cov=.
       
